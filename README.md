@@ -60,7 +60,7 @@ On the update page, add a returnUrl to your form, for example in `views/post/upd
 // generate a returnUrl form value
 // pass false so that it points to the returnUrl from the request params provided by your link
 $ruToken = ReturnUrl::getToken(false);
-Html::hiddenInput('returnUrl', $ruToken);
+Html::hiddenInput('ru', $ruToken);
 ```
 
 In the controller action that handles the form, change the call to `$this->redirect()`, for example in `Post::actionUpdate()`
