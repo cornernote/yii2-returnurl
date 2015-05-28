@@ -67,8 +67,8 @@ class ReturnUrl
      */
     private function getRequestToken()
     {
-        $requestKey = self::$requestKey;
-        $token = isset($_GET[$requestKey]) && is_scalar($_GET[$requestKey]) ? $_GET[$requestKey] : (isset($_POST[$requestKey]) && is_scalar($_POST[$requestKey]) ? $_POST[$requestKey] : false);
+        $rk = self::$requestKey;
+        $token = isset($_GET[$rk]) && is_scalar($_GET[$rk]) ? $_GET[$rk] : (isset($_POST[$rk]) && is_scalar($_POST[$rk]) ? $_POST[$rk] : false);
         $token = str_replace(chr(0), '', $token); // strip nul byte
         $token = preg_replace('/\s+/', '', $token); // strip whitespace
         return $token;
