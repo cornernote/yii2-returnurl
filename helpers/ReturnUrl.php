@@ -54,8 +54,10 @@ class ReturnUrl
      */
     public static function getUrl($altUrl = null)
     {
-        $url = self::tokenToUrl(self::getRequestToken()) || $altUrl;
-        return $url ? $url : Yii::$app->homeUrl;
+        $url = self::tokenToUrl(self::getRequestToken());
+        $url = $url ? $url : $altUrl;
+        $url = $url ? $url : Yii::$app->homeUrl;
+        return $url;
     }
 
     /**
