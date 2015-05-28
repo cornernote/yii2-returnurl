@@ -23,7 +23,6 @@ The solution is to pass the returnUrl into the GET and POST request by embedding
 
 [Features](#features)  
 [Installation](#installation)  
-[Configuration](#configuration)  
 [Usage](#usage)  
 [License](#license)  
 [Links](#links) 
