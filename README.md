@@ -7,7 +7,7 @@ Maintain the state of Return Urls by using the request.
 [![Latest Stable Version](https://poser.pugx.org/cornernote/yii2-return-url/v/stable.png)](https://packagist.org/packages/cornernote/yii2-return-url) [![Build Status](https://travis-ci.org/cornernote/yii2-return-url.png?branch=master)](https://travis-ci.org/cornernote/yii2-return-url)
 
 
-You might be saying, Yii already handles a returnUrl perfectly fine with the `CWebUser::getReturnUrl()` and `CWebUser::setReturnUrl()` methods.  Why not use those?
+You might be saying, Yii2 already handles a returnUrl perfectly fine with the `Url::remember()` and `Url::previous()` methods.  Why not use those?
 
 These methods store the returnUrl into a single variable in the users session.  This becomes a flaw when we have multiple tabs open.  Take the following scenario:
 
