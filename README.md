@@ -1,6 +1,6 @@
 # Yii2 ReturnUrl
 
-Maintain the state of Return Urls by using the request.
+Maintain the state of Return URLs across multiple tabs by using the request as persistent storage.
 
 [![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) [![Project Stats](https://www.ohloh.net/p/yii2-return-url/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii2-return-url)
 
