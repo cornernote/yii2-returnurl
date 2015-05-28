@@ -1,0 +1,19 @@
+{
+    "name": "cornernote/yii2-return-url",
+    "description": "Maintain the state of Return URLs across multiple tabs.",
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "keywords": ["yii2", "url", "return url"],
+    "authors": [
+        {
+            "name": "Brett O'Donnell",
+            "email": "cornernote@gmail.com",
+            "homepage": "http://mrphp.com.au/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "cornernote\\": ""
+        }
+    }
+}
