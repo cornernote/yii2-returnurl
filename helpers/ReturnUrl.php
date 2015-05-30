@@ -49,7 +49,7 @@ class ReturnUrl
      * echo Html::a('my link', ['test/form', 'ru' => ReturnUrl::getRequestToken()]);
      * echo Html::hiddenInput('ru', ReturnUrl::getRequestToken());
      * ```
-     * 
+     *
      * @return string
      */
     public static function getRequestToken()
@@ -87,10 +87,12 @@ class ReturnUrl
      * @param string $input the URL to convert
      * @return string
      */
-    public function urlToToken($input)
+    public static function urlToToken($input)
     {
-        $key = uniqid();
-        Yii::$app->cache->set(self::$requestKey . '.' . $key, $input);
+        $key = self::khash($input);
+        if (!Yii::$app->cache->exists(self::$requestKey . '.' . $key)) {
+            Yii::$app->cache->set(self::$requestKey . '.' . $key, $input);
+        }
         return $key;
     }
 
@@ -100,10 +102,33 @@ class ReturnUrl
      * @param string $token the Token to convert
      * @return string
      */
-    private function tokenToUrl($token)
+    public static function tokenToUrl($token)
     {
         if (!is_scalar($token)) return false;
         return Yii::$app->cache->get(self::$requestKey . '.' . $token);
+    }
+
+    /**
+     * Small sample convert crc32 to character map.
+     * @link http://au1.php.net/crc32#111931
+     *
+     * @param string $data
+     * @return string
+     */
+    public static function khash($data)
+    {
+        static $map = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        static $hashes = [];
+        if (isset($hashes[$data])) {
+            return $hashes[$data];
+        }
+        $hash = bcadd(sprintf('%u', crc32($data)), 0x100000000);
+        $str = '';
+        do {
+            $str = $map[bcmod($hash, 62)] . $str;
+            $hash = bcdiv($hash, 62);
+        } while ($hash >= 1);
+        return $hashes[$data] = $str;
     }
 
 }
