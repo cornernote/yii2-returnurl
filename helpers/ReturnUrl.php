@@ -23,7 +23,7 @@ class ReturnUrl
     public static $requestKey = 'ru';
 
     /**
-     * Get url token from the current page url or submitted data for usage in a link or hidden form element.
+     * Get a new Token based on the current page url.
      *
      * @usage
      * in views/your_page.php
@@ -35,9 +35,30 @@ class ReturnUrl
      * @param bool $currentPage true to use the current page's URL, false to get from request
      * @return string
      */
-    public static function getToken($currentPage = true)
+    public static function getToken()
     {
-        return $currentPage ? self::urlToToken(Yii::$app->request->url) : self::getRequestToken();
+        return self::urlToToken(Yii::$app->request->url);
+    }
+
+    /**
+     * Get the existing Token from the request data.
+     *
+     * @usage
+     * in views/your_page.php
+     * ```
+     * echo Html::a('my link', ['test/form', 'ru' => ReturnUrl::getRequestToken()]);
+     * echo Html::hiddenInput('ru', ReturnUrl::getRequestToken());
+     * ```
+     * 
+     * @return string
+     */
+    public function getRequestToken()
+    {
+        $rk = self::$requestKey;
+        $token = isset($_GET[$rk]) && is_scalar($_GET[$rk]) ? $_GET[$rk] : (isset($_POST[$rk]) && is_scalar($_POST[$rk]) ? $_POST[$rk] : false);
+        $token = str_replace(chr(0), '', $token); // strip nul byte
+        $token = preg_replace('/\s+/', '', $token); // strip whitespace
+        return $token;
     }
 
     /**
@@ -58,20 +79,6 @@ class ReturnUrl
         $url = $url ? $url : $altUrl;
         $url = $url ? $url : Yii::$app->homeUrl;
         return $url;
-    }
-
-    /**
-     * Get the Token from the request data.
-     *
-     * @return string
-     */
-    private function getRequestToken()
-    {
-        $rk = self::$requestKey;
-        $token = isset($_GET[$rk]) && is_scalar($_GET[$rk]) ? $_GET[$rk] : (isset($_POST[$rk]) && is_scalar($_POST[$rk]) ? $_POST[$rk] : false);
-        $token = str_replace(chr(0), '', $token); // strip nul byte
-        $token = preg_replace('/\s+/', '', $token); // strip whitespace
-        return $token;
     }
 
     /**
