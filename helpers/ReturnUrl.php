@@ -52,7 +52,7 @@ class ReturnUrl
      * 
      * @return string
      */
-    public function getRequestToken()
+    public static function getRequestToken()
     {
         $rk = self::$requestKey;
         $token = isset($_GET[$rk]) && is_scalar($_GET[$rk]) ? $_GET[$rk] : (isset($_POST[$rk]) && is_scalar($_POST[$rk]) ? $_POST[$rk] : false);
