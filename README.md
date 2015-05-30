@@ -49,17 +49,13 @@ Your user is on a search results page, and you have a link to an update form.  A
 On the start page, add a ReturnUrl to your link, for example in `views/post/index.php`:
 ```php
 // generate a returnUrl link value
-// pass true so that it points to the current page
-$ruToken = ReturnUrl::getToken(true);
-Html::a('edit post', ['post/update', 'id' => $post->id, 'ru' => $ruToken]);
+Html::a('edit post', ['post/update', 'id' => $post->id, 'ru' => ReturnUrl::getToken()]);
 ```
 
 On the update page, add a returnUrl to your form, for example in `views/post/update.php`:
 ```php
 // generate a returnUrl form value
-// pass false so that it points to the returnUrl from the request params provided by your link
-$ruToken = ReturnUrl::getToken(false);
-Html::hiddenInput('ru', $ruToken);
+Html::hiddenInput('ru', ReturnUrl::getRequestToken());
 ```
 
 In the controller action that handles the form, change the call to `$this->redirect()`, for example in `Post::actionUpdate()`
