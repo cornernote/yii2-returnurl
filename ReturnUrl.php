@@ -1,6 +1,6 @@
 <?php
 
-namespace cornernote\returnurl\helpers;
+namespace cornernote\returnurl;
 
 use Yii;
 
