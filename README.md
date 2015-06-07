@@ -58,7 +58,9 @@ Html::hiddenInput('ru', ReturnUrl::getRequestToken());
 
 In the controller action that handles the form, change the call to `$this->redirect()`, for example in `Post::actionUpdate()`
 ```php
-$altUrl = ['post/index']; // this is where we used to redirect to, we use it as a fail-back (if not provided then we redirect to the home page)
+// this is where we used to redirect to, we use it as a fail-back
+// (if not provided then we redirect to the home page)
+$altUrl = ['post/index'];
 return $this->redirect(ReturnUrl::getUrl($altUrl));
 ```
 
