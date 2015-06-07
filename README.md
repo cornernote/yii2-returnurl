@@ -62,6 +62,12 @@ $altUrl = ['post/index']; // this is where we used to redirect to, we use it as 
 return $this->redirect(ReturnUrl::getUrl($altUrl));
 ```
 
+## Examples
+
+![2015-06-07_2004](https://cloud.githubusercontent.com/assets/51875/8023634/19eb5e50-0d53-11e5-9d3c-72cc19b06c53.png)
+![2015-06-07_1949](https://cloud.githubusercontent.com/assets/51875/8023635/1a1e89ba-0d53-11e5-9a1d-0f7edb45a97c.png)
+![2015-06-07_2011](https://cloud.githubusercontent.com/assets/51875/8023636/1bd293c8-0d53-11e5-94c3-66fba15eff96.png)
+
 
 ## License
 
