@@ -79,6 +79,3 @@ return $this->redirect(ReturnUrl::getUrl($altUrl));
 
 
 [![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) 
-
-[![Project Stats](https://www.ohloh.net/p/yii2-return-url/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii2-return-url)
-
