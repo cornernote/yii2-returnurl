@@ -2,8 +2,6 @@
 
 ReturnUrl helper for recursive tab-aware redirection and recursive redirection.
 
-[![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) [![Project Stats](https://www.ohloh.net/p/yii2-return-url/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii2-return-url)
-
 [![Latest Stable Version](https://poser.pugx.org/cornernote/yii2-return-url/v/stable.png)](https://packagist.org/packages/cornernote/yii2-return-url) [![Build Status](https://travis-ci.org/cornernote/yii2-return-url.png?branch=master)](https://travis-ci.org/cornernote/yii2-return-url)
 
 
@@ -78,3 +76,9 @@ return $this->redirect(ReturnUrl::getUrl($altUrl));
 - [Yii2 Extension](http://www.yiiframework.com/extension/yii2-return-url)
 - [Composer Package](https://packagist.org/packages/cornernote/yii2-return-url)
 - [MrPHP](http://mrphp.com.au)
+
+
+[![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) 
+
+[![Project Stats](https://www.ohloh.net/p/yii2-return-url/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii2-return-url)
+
