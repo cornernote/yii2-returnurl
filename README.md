@@ -2,9 +2,6 @@
 
 ReturnUrl helper for recursive tab-aware redirection and recursive redirection.
 
-[![Latest Stable Version](https://poser.pugx.org/cornernote/yii2-return-url/v/stable.png)](https://packagist.org/packages/cornernote/yii2-return-url) [![Build Status](https://travis-ci.org/cornernote/yii2-return-url.png?branch=master)](https://travis-ci.org/cornernote/yii2-return-url)
-
-
 You might be saying, Yii2 already handles a returnUrl perfectly fine with the `Url::remember()` and `Url::previous()` methods.  Why not use those?
 
 These methods store the returnUrl into a single variable in the users session.  This becomes a flaw when we have multiple tabs open.  Take the following scenario:
@@ -35,9 +32,21 @@ The solution is to pass the returnUrl into the GET and POST request by embedding
 
 ## Installation
 
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+Either run
+
 ```
-composer require cornernote/yii2-return-url
+$ composer require cornernote/yii2-returnurl "*"
 ```
+
+or add
+
+```
+"cornernote/yii2-returnurl": "*"
+```
+
+to the `require` section of your `composer.json` file.
 
 
 ## Usage
