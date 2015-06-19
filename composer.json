@@ -1,5 +1,5 @@
 {
-    "name": "cornernote/yii2-return-url",
+    "name": "cornernote/yii2-returnurl",
     "description": "Maintain the state of Return URLs across multiple tabs by using the request as persistent storage.",
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
