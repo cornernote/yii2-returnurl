@@ -14,15 +14,6 @@ These methods store the returnUrl into a single variable in the users session.  
 The solution is to pass the returnUrl into the GET and POST request by embedding it into your links and forms.  This extension makes it very easy to do and solves many common problems including the maximum length of a GET request.
 
 
-### Contents
-
-[Features](#features)  
-[Installation](#installation)  
-[Usage](#usage)  
-[License](#license)  
-[Links](#links) 
-
-
 ## Features
 
 - Allows a URL to be consistent with the page the user is viewing, even if they open other tabs.
