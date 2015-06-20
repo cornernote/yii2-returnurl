@@ -35,8 +35,9 @@ class ReturnUrlTest extends TestCase
     {
         $url = Yii::$app->request->url;
         $token = ReturnUrl::getToken();
-        $_POST['ru'] = $token;
+        $_GET['ru'] = $token;
         $returnUrl = ReturnUrl::getUrl();
+        unset($_GET['ru']);
         $this->assertEquals($url, $returnUrl);
     }
 
@@ -48,6 +49,7 @@ class ReturnUrlTest extends TestCase
         $token = ReturnUrl::getToken();
         $_GET['ru'] = $token;
         $requestToken = ReturnUrl::getRequestToken();
+        unset($_GET['ru']);
         $this->assertEquals($token, $requestToken);
     }
 
@@ -57,9 +59,22 @@ class ReturnUrlTest extends TestCase
     public function testGetRequestTokenFromPost()
     {
         $token = ReturnUrl::getToken();
+        $_POST['_method'] = true; // needed for Yii::$app()->request->post() to work
         $_POST['ru'] = $token;
         $requestToken = ReturnUrl::getRequestToken();
+        unset($_POST['ru']);
         $this->assertEquals($token, $requestToken);
+    }
+
+    /**
+     * Token as array
+     */
+    public function testTokenAsArray()
+    {
+        $_GET['ru'] = [ReturnUrl::getToken()];
+        $requestToken = ReturnUrl::getRequestToken();
+        unset($_GET['ru']);
+        $this->assertFalse($requestToken);
     }
 
     /**

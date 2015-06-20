@@ -51,12 +51,18 @@ class ReturnUrl
      * echo Html::hiddenInput('ru', ReturnUrl::getRequestToken());
      * ```
      *
-     * @return string
+     * @return string|bool
      */
     public static function getRequestToken()
     {
         $rk = self::$requestKey;
-        $token = isset($_GET[$rk]) && is_scalar($_GET[$rk]) ? $_GET[$rk] : (isset($_POST[$rk]) && is_scalar($_POST[$rk]) ? $_POST[$rk] : false);
+        $token = Yii::$app->request->get($rk);
+        if (!$token) {
+            $token = Yii::$app->request->post($rk);
+        }
+        if (!$token || !is_scalar($token)) {
+            return false;
+        }
         $token = str_replace(chr(0), '', $token); // strip nul byte
         $token = preg_replace('/\s+/', '', $token); // strip whitespace
         return $token;
@@ -72,7 +78,7 @@ class ReturnUrl
      * ```
      *
      * @param mixed $altUrl alternative URL to use for redirect if there is no URL
-     * @return string
+     * @return string|bool
      */
     public static function getUrl($altUrl = null)
     {
@@ -101,7 +107,7 @@ class ReturnUrl
      * Convert a Token to a URL.
      *
      * @param string $token the Token to convert
-     * @return string
+     * @return string|bool
      */
     public static function tokenToUrl($token)
     {
