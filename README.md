@@ -1,5 +1,12 @@
 # Yii2 ReturnUrl
 
+[![Latest Version](https://img.shields.io/github/tag/cornernote/yii2-returnurl.svg?style=flat-square&label=release)](https://github.com/cornernote/yii2-returnurl/tags)
+[![Software License](https://img.shields.io/badge/license-BSD-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/cornernote/yii2-returnurl/master.svg?style=flat-square)](https://travis-ci.org/cornernote/yii2-returnurl)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/cornernote/yii2-returnurl.svg?style=flat-square)](https://scrutinizer-ci.com/g/cornernote/yii2-returnurl/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/cornernote/yii2-returnurl.svg?style=flat-square)](https://scrutinizer-ci.com/g/cornernote/yii2-returnurl)
+[![Total Downloads](https://img.shields.io/packagist/dt/cornernote/yii2-returnurl.svg?style=flat-square)](https://packagist.org/packages/cornernote/yii2-returnurl)
+
 ReturnUrl helper for recursive tab-aware nested redirection in Yii2.
 
 You might be saying, Yii2 already handles a returnUrl perfectly fine with the `Url::remember()` and `Url::previous()` methods.  Why not use those?
