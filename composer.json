@@ -1,6 +1,6 @@
 {
     "name": "cornernote/yii2-returnurl",
-    "description": "ReturnUrl helper for recursive tab-aware nested redirection in Yii2.",
+    "description": "ReturnUrl helper for tab-aware nested redirection in Yii2.",
     "keywords": ["yii2", "url", "returnurl"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
