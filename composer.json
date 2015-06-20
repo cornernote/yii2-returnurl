@@ -1,9 +1,9 @@
 {
     "name": "cornernote/yii2-returnurl",
-    "description": "Maintain the state of Return URLs across multiple tabs by using the request as persistent storage.",
+    "description": "ReturnUrl helper for recursive tab-aware nested redirection in Yii2.",
+    "keywords": ["yii2", "url", "returnurl"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
-    "keywords": ["yii2", "url", "returnurl"],
     "authors": [
         {
             "name": "Brett O'Donnell",
@@ -11,9 +11,12 @@
             "homepage": "http://mrphp.com.au/"
         }
     ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
     "autoload": {
         "psr-4": {
-            "cornernote\\returnurl\\": ""
+            "cornernote\\returnurl\\": "src"
         }
     }
 }
