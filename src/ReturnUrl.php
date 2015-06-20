@@ -82,11 +82,7 @@ class ReturnUrl
      */
     public static function getUrl($altUrl = null)
     {
-        $token = self::getRequestToken();
-        if (!$token) {
-            return false;
-        }
-        $url = self::tokenToUrl($token);
+        $url = self::tokenToUrl(self::getRequestToken());
         $url = $url ? $url : $altUrl;
         $url = $url ? $url : Yii::$app->homeUrl;
         return $url;
@@ -110,12 +106,12 @@ class ReturnUrl
     /**
      * Convert a Token to a URL.
      *
-     * @param string $token the Token to convert
+     * @param string|bool $token the Token to convert
      * @return string|bool
      */
     public static function tokenToUrl($token)
     {
-        if (!is_scalar($token)) return false;
+        if (!$token || !is_scalar($token)) return false;
         return Yii::$app->cache->get(self::$requestKey . '.' . $token);
     }
 
