@@ -82,7 +82,11 @@ class ReturnUrl
      */
     public static function getUrl($altUrl = null)
     {
-        $url = self::tokenToUrl(self::getRequestToken());
+        $token = self::getRequestToken();
+        if (!$token) {
+            return false;
+        }
+        $url = self::tokenToUrl($token);
         $url = $url ? $url : $altUrl;
         $url = $url ? $url : Yii::$app->homeUrl;
         return $url;
