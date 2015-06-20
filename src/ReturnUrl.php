@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Brett O'Donnell <cornernote@gmail.com>
+ * @copyright 2015 Mr PHP
+ * @link https://github.com/cornernote/yii2-returnurl
+ * @license BSD-3-Clause https://raw.github.com/cornernote/yii2-returnurl/master/LICENSE.md
+ */
 
 namespace cornernote\returnurl;
 
@@ -7,12 +13,8 @@ use Yii;
 /**
  * Maintain state of a Return Url
  *
- * Allows the user to have multiple tabs open, each tab will handle its own Return Url passed in via the GET or POST params.
- *
- * @author Brett O'Donnell <cornernote@gmail.com>
- * @copyright 2015 Mr PHP
- * @link https://github.com/cornernote/yii2-return-url
- * @license BSD-3-Clause https://raw.github.com/cornernote/yii2-return-url/master/LICENSE
+ * Allows the user to have multiple tabs open, each tab will handle its own
+ * Return Url passed in via the GET or POST params.
  */
 class ReturnUrl
 {
@@ -32,7 +34,6 @@ class ReturnUrl
      * echo Html::hiddenInput('ru', ReturnUrl::getToken());
      * ```
      *
-     * @param bool $currentPage true to use the current page's URL, false to get from request
      * @return string
      */
     public static function getToken()
@@ -115,7 +116,7 @@ class ReturnUrl
      * @param string $data
      * @return string
      */
-    public static function khash($data)
+    protected static function khash($data)
     {
         static $map = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         static $hashes = [];
