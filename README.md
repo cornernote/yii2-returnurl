@@ -25,7 +25,7 @@ The solution is to pass the returnUrl into the GET and POST request by embedding
 
 - Allows a URL to be consistent with the page the user is viewing, even if they open other tabs.
 - Easily embed return URLs into your links or forms.
-- Handles very long returnUrl values by passing a key in the GET params.
+- Handles very long returnUrl values by passing a token in the GET/POST request data.
 
 
 ## Installation
@@ -47,23 +47,32 @@ or add
 to the `require` section of your `composer.json` file.
 
 
+## Methods
+
+`ReturnUrl::getToken()` - Creates and returns a new token.  Pass this into the request to mark the current page as the origin url.
+
+`ReturnUrl::getRequestToken()` - Returns the current token.  Pass this into the request to allow multiple pages to be visited before returning to the origin url.
+
+`ReturnUrl::getUrl($altUrl)` - Return the origin url or `$altUrl` if no token was found in the request data.  Use this value to redirect to the origin url.
+
+
 ## Usage
 
 Your user is on a search results page, and you have a link to an update form.  After filling in the form you want the user to be returned to the page they started from.
 
-On the start page, add a ReturnUrl to your link, for example in `views/post/index.php`:
+On the start page, add a `ReturnUrl::getToken()` to your link.  This will set the current page as the origin url.  For example in `views/post/index.php`:
 ```php
 // generate a returnUrl link value
 Html::a('edit post', ['post/update', 'id' => $post->id, 'ru' => ReturnUrl::getToken()]);
 ```
 
-On the update page, add a returnUrl to your form, for example in `views/post/update.php`:
+On the update page, add a `ReturnUrl::getRequestToken()` to your form.  This will pass the existing token through to the next page so that the controller can redirect to the origin url after it successfully saves.  For example in `views/post/update.php`:
 ```php
 // generate a returnUrl form value
 Html::hiddenInput('ru', ReturnUrl::getRequestToken());
 ```
 
-In the controller action that handles the form, change the call to `$this->redirect()`, for example in `Post::actionUpdate()`
+In the controller action that handles the form, change the call to `$this->redirect($url)` to `$this->redirect(ReturnUrl::getUrl($url))`.  This redirects the user to the origin url.  For example in `Post::actionUpdate()`
 ```php
 // this is where we used to redirect to, we use it as a fail-back
 // (if not provided then we redirect to the home page)
