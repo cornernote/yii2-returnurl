@@ -56,9 +56,9 @@ class ReturnUrl
     public static function getRequestToken()
     {
         $rk = self::$requestKey;
-        $token = Yii::$app->request->get($rk);
+        $token = Yii::$app->request->post($rk);
         if (!$token) {
-            $token = Yii::$app->request->post($rk);
+            $token = Yii::$app->request->get($rk);
         }
         if (!$token || !is_scalar($token)) {
             return false;
