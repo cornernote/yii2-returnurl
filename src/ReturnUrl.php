@@ -9,6 +9,7 @@
 namespace cornernote\returnurl;
 
 use Yii;
+use yii\web\Request;
 
 /**
  * Maintain state of a Return Url
@@ -38,6 +39,9 @@ class ReturnUrl
      */
     public static function getToken()
     {
+        if (!Yii::$app->request instanceof Request) {
+            return false;
+        }
         return self::urlToToken(Yii::$app->request->url);
     }
 
@@ -55,6 +59,9 @@ class ReturnUrl
      */
     public static function getRequestToken()
     {
+        if (!Yii::$app->request instanceof Request) {
+            return false;
+        }
         $rk = self::$requestKey;
         $token = Yii::$app->request->post($rk);
         if (!$token) {
@@ -97,8 +104,8 @@ class ReturnUrl
     public static function urlToToken($input)
     {
         $key = self::khash($input);
-        if (!Yii::$app->cache->exists(self::$requestKey . '.' . $key)) {
-            Yii::$app->cache->set(self::$requestKey . '.' . $key, $input);
+        if (!static::cache()->exists(self::$requestKey . '.' . $key)) {
+            static::cache()->set(self::$requestKey . '.' . $key, $input);
         }
         return $key;
     }
@@ -112,7 +119,15 @@ class ReturnUrl
     public static function tokenToUrl($token)
     {
         if (!$token || !is_scalar($token)) return false;
-        return Yii::$app->cache->get(self::$requestKey . '.' . $token);
+        return static::cache()->get(self::$requestKey . '.' . $token);
+    }
+
+    /**
+     * @return \yii\caching\Cache
+     */
+    public static function cache()
+    {
+        return Yii::$app->cache;
     }
 
     /**
