@@ -60,7 +60,7 @@ class ReturnUrl
     public static function getRequestToken()
     {
         if (!Yii::$app->request instanceof Request) {
-            return false;
+            return null;
         }
         $rk = self::$requestKey;
         $token = Yii::$app->request->post($rk);
@@ -68,7 +68,7 @@ class ReturnUrl
             $token = Yii::$app->request->get($rk);
         }
         if (!$token || !is_scalar($token)) {
-            return false;
+            return null;
         }
         $token = str_replace(chr(0), '', $token); // strip nul byte
         $token = preg_replace('/\s+/', '', $token); // strip whitespace
