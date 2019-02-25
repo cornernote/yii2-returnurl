@@ -147,7 +147,7 @@ class ReturnUrl
         $hash = bcadd(sprintf('%u', crc32($data)), 0x100000000);
         $str = '';
         do {
-            $str = $map[bcmod($hash, 62)] . $str;
+            $str = $map[(int)bcmod($hash, 62)] . $str;
             $hash = bcdiv($hash, 62);
         } while ($hash >= 1);
         return $hashes[$data] = $str;
