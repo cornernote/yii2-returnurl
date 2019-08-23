@@ -25,6 +25,8 @@ class ReturnUrl
      */
     public static $requestKey = 'ru';
 
+    const LABEL_KEY = 'returnurl-label';
+
     /**
      * Get a new Token based on the current page url.
      *
@@ -34,15 +36,44 @@ class ReturnUrl
      * echo Html::a('my link', ['test/form', 'ru' => ReturnUrl::getToken()]);
      * echo Html::hiddenInput('ru', ReturnUrl::getToken());
      * ```
-     *
+     * @var string|null $label
      * @return string
      */
-    public static function getToken()
+    public static function getToken(?string $label = null)
     {
         if (!Yii::$app->request instanceof Request) {
             return false;
         }
-        return self::urlToToken(Yii::$app->request->url);
+
+        $token = self::urlToToken(Yii::$app->request->url);
+
+        if ($label) {
+            self::setLabel($label, $token);
+        }
+
+        return $token;
+    }
+
+    /**
+     * Save URL label in cache
+     * @param string $label
+     * @param string $token
+     */
+    public static function setLabel(string $label, string $token): void
+    {
+        static::cache()->set(self::LABEL_KEY . '-' . $token, $label);
+    }
+
+    /**
+     * Get saved URL label form cache
+     * @param string $token
+     * @return mixed
+     */
+    public static function getLabel(string $token)
+    {
+        $label = static::cache()->get(self::LABEL_KEY . '-' . $token);
+
+        return $label;
     }
 
     /**
