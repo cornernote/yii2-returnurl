@@ -36,10 +36,10 @@ class ReturnUrl
      * echo Html::a('my link', ['test/form', 'ru' => ReturnUrl::getToken()]);
      * echo Html::hiddenInput('ru', ReturnUrl::getToken());
      * ```
-     * @var string|null $label
+     * @var string $label
      * @return string
      */
-    public static function getToken(?string $label = null)
+    public static function getToken($label = null)
     {
         if (!Yii::$app->request instanceof Request) {
             return false;
@@ -59,7 +59,7 @@ class ReturnUrl
      * @param string $label
      * @param string $token
      */
-    public static function setLabel(string $label, string $token): void
+    public static function setLabel($label, $token)
     {
         static::cache()->set(self::LABEL_KEY . '-' . $token, $label);
     }
@@ -69,7 +69,7 @@ class ReturnUrl
      * @param string $token
      * @return mixed
      */
-    public static function getLabel(string $token)
+    public static function getLabel($token)
     {
         $label = static::cache()->get(self::LABEL_KEY . '-' . $token);
 
