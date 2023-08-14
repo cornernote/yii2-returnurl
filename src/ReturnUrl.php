@@ -36,7 +36,7 @@ class ReturnUrl
      * echo Html::a('my link', ['test/form', 'ru' => ReturnUrl::getToken()]);
      * echo Html::hiddenInput('ru', ReturnUrl::getToken());
      * ```
-     * @var string $label
+     * @var ?string $label
      * @return string
      */
     public static function getToken($label = null)
