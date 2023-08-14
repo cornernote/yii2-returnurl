@@ -88,7 +88,7 @@ ReturnUrl::getToken('Back to client list');
 Show label in back button
 ```php
 ReturnUrl::getToken('Back to client list');
-echo Html::a(ReturnUrl::getUrl($ReturnUrl::getRequestToken()),ReturnUrl::getUrl());
+echo Html::a(ReturnUrl::getUrl(ReturnUrl::getRequestToken()), ReturnUrl::getUrl());
 ```
 
 
