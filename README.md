@@ -95,6 +95,18 @@ $altUrl = ['post/index'];
 return $this->redirect(ReturnUrl::getUrl($altUrl));
 ```
 
+Is possible set label for token
+```php
+ReturnUrl::getToken('Back to client list');
+
+```
+Show label in back button
+```php
+ReturnUrl::getToken('Back to client list');
+echo Html::a(ReturnUrl::getUrl(ReturnUrl::getRequestToken()), ReturnUrl::getUrl());
+```
+
+
 ## Examples
 
 ![list](https://cloud.githubusercontent.com/assets/51875/8023635/1a1e89ba-0d53-11e5-9a1d-0f7edb45a97c.png)
