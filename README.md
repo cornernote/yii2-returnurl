@@ -28,6 +28,21 @@ The solution is to pass the returnUrl into the GET and POST request by embedding
 - Handles very long returnUrl values by passing a token in the GET/POST request data.
 
 
+## Requirements
+
+ReturnUrl uses cache to store URL to Token mapping.  Due to this you must have a cache component in your config, for example:
+
+```
+$config = [
+    'components' => [
+        'cache' => [
+           'class' => 'yii\caching\FileCache',
+        ],
+    ],
+],
+```
+
+
 ## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
